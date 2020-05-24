@@ -1,8 +1,8 @@
 const Twit = require('twit');
 
-class HomeStatusClient {
+class HomeTimelineClient {
     constructor(req_body) {
-        this.twitClient = this.buildTwitClient(req_body)
+        this.twitClient = this.buildTwitClient(req_body);
     }
 
     buildTwitClient({twitterToken, twitterSecret}) {
@@ -13,28 +13,26 @@ class HomeStatusClient {
             access_token_secret: twitterSecret,
             timeout_ms: 60 * 1000,
             strictSSL: true,
-        })
+        });
     }
 
-    async getAllHomeStatuses() {
+    async getAllHomeTimelines() {
         try {
             const response = await this.twitClient.get(
                 'statuses/home_timeline',
                 {exclude_replies: true}
             )
-
-            return response.data
+            return response.data;
         } catch (error) {
-            console.error(error.message)
-            return []
+            console.error(error.message);
+            return [];
         }
-
     }
 
-    async getFilteredHomeStatuses() {
+    async getFilteredHomeTimelines() {
         const sevenDaysAgo = 7;
         const filterDate = new Date(Date.now() - sevenDaysAgo * 24 * 60 * 60 * 1000);
-        const allHomeStatuses = await this.getAllHomeStatuses();
+        const allHomeStatuses = await this.getAllHomeTimelines();
 
         return allHomeStatuses.filter(({created_at, entities}) => {
             return new Date(created_at) > filterDate && entities.urls.length >= 1;
@@ -42,4 +40,4 @@ class HomeStatusClient {
     }
 }
 
-module.exports = HomeStatusClient;
+module.exports = HomeTimelineClient;

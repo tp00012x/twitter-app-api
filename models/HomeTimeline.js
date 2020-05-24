@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const HomeStatusSchema = new Schema({
+const HomeTimelineSchema = new Schema({
     id: {
         type: Number,
         required: true,
@@ -30,4 +30,4 @@ const HomeStatusSchema = new Schema({
     },
 });
 
-module.exports = mongoose.model('HomeStatus', HomeStatusSchema);
+module.exports = mongoose.model('HomeTimeline', HomeTimelineSchema);
