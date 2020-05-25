@@ -20,7 +20,9 @@ class HomeTimelineClient {
         try {
             const response = await this.twitClient.get(
                 'statuses/home_timeline',
-                {exclude_replies: true}
+                {
+                    exclude_replies: true, count: 200
+                }
             )
             return response.data;
         } catch (error) {
