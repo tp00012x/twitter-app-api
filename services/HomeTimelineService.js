@@ -24,14 +24,8 @@ class HomeTimelineService {
                 console.error(err.message)
             }
         }
-    }
 
-    async getHomeTimelines() {
-        try {
-            return await HomeTimeline.find();
-        } catch (err) {
-            console.error(err.message);
-        }
+        return filteredHomeTimelines;
     }
 }
 
