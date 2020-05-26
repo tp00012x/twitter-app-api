@@ -1,1 +1,3 @@
-# twitter-app-api
+### To run the app:
+
+```npm start```
