@@ -10,6 +10,9 @@ app.use(cors());
 app.use(express.json());
 
 // Routers
+app.get('/', (req, res) => {
+    res.send('Running back-end')
+})
 app.use('/api', apiRoute);
 
 // DB
